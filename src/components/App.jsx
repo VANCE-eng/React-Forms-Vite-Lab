@@ -8,13 +8,24 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   function handleDarkModeClick() {
-    setIsDarkMode((isDarkMode) => !isDarkMode);
+    setIsDarkMode((previousState) => !previousState);
+  }
+
+  function handleItemFormSubmit(newItem) {
+    setItems((previousItems) => [...previousItems, newItem]);
   }
 
   return (
     <div className={"App " + (isDarkMode ? "dark" : "light")}>
-      <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
-      <ShoppingList items={items} />
+      <Header
+        isDarkMode={isDarkMode}
+        onDarkModeClick={handleDarkModeClick}
+      />
+
+      <ShoppingList
+        items={items}
+        onItemFormSubmit={handleItemFormSubmit}
+      />
     </div>
   );
 }
